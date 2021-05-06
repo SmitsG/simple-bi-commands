@@ -6,7 +6,7 @@ class File:
     self.__path = path
 
   """ 
-  1. The following code contains getter and setters to define the path name.
+  1. The following code contains getter and setter to define the path name.
   If you want to add/delete a path, you can do this in a uniform way that's safe to use.
   """
   # return the path of your File object
@@ -27,7 +27,11 @@ class File:
   def get_basename_of_absolute_path(self, absolute_path):
     basename = os.path.basename(absolute_path)
     return(basename)
-# determine and return the type of format (examples: .csv .fasta .fastq)
+# Determine and return the type of format (examples: .csv .fasta .fastq)
+  def get_extension_of_absolute_path(self, absolute_path):
+    name, extension = os.path.splitext(absolute_path)
+    return(name, extension)
+
 # check the type of format
     def is_fasta(filename):
       with open(filename, "r") as handle:

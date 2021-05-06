@@ -12,5 +12,6 @@ def main():
   my_file = File(absolute_path)
   # step 2. get basename of the path
   basename = my_file.get_basename_of_absolute_path(my_file.path)
-  print(basename)
+  name, extension = my_file.get_extension_of_absolute_path(my_file.path)
+  
 main()
