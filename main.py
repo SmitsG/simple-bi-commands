@@ -1,12 +1,20 @@
 from get_file import File
 import os
+import logging
+from arguments import argument_parser
+
+##############################################################
+# Simple bio-informatics tools
+# Author: Gerwin Smits
+__version__ = '0.1 (Gerwin)'
+##############################################################
 
 # The main
 def main():
   """ ---------------------------------------------- 
       Step 1. give your absolute path
       ----------------------------------------------
-  """  
+  """ 
   absolute_path = "C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna" # Obviously not FASTA
 
   """ ----------------------------------------------
@@ -14,6 +22,7 @@ def main():
       You will give your absolute_path, which can be changed later.
       -----------------------------------------------
   """ 
+  print()
   my_file = File(absolute_path)
 
   """ -----------------------------------------------
@@ -33,5 +42,6 @@ def main():
     -----------------------------------------------
   """
   name, extension = my_file.get_extension_of_absolute_path(my_file.path)
+  
   
 main()

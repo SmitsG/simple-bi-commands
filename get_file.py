@@ -28,7 +28,7 @@ class File:
       print("File is not exist or accessible")
     finally:
       # print the termination message
-      print("End of the program")
+      print("End of file_exist program")
 
   """ ---------------------------------------------- 
       Getters and Setters
