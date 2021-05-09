@@ -14,8 +14,8 @@ __version__ = '0.1 (Gerwin)'
 def main():
 
 # Start time of the application.
-  start_time = timer()
-  start_time2 = datetime.datetime.now()
+  start_time_timer = timer()
+  start_time_datetime = datetime.datetime.now()
 
   """ ---------------------------------------------- 
       Step 1. give your absolute path
@@ -28,7 +28,6 @@ def main():
       You will give your absolute_path, which can be changed later.
       -----------------------------------------------
   """ 
-  print()
   my_file = File(absolute_path)
 
   """ -----------------------------------------------
@@ -49,20 +48,25 @@ def main():
   """
   name, extension = my_file.get_extension_of_absolute_path(my_file.path)
 
-  total_runtime(start_time, start_time2)
+  time_hours, time_min, time_sec = total_runtime_with_timer(start_time_timer)
+  total = total_runtime_with_datetime(start_time_datetime)
+  print(time_hours,time_min,time_sec)
   
 
-def total_runtime(start_time, start_time2):
+def total_runtime_with_timer(start_time_timer):
 # Log the total run time
   end_time = timer()
-  seconds = end_time - start_time
-  m, s = divmod(seconds, 60)
-  h, m = divmod(m, 60)
+  seconds = end_time - start_time_timer
+  time_min, time_sec = divmod(seconds, 60)
+  time_hours, time_min = divmod(time_min, 60)
   logging.info("The total amount of time that the application ran is: {}"
-                .format("%d : hours : %02d minutes and %02d seconds" % (h, m, s)))
+                 .format("%d : hours : %02d minutes and %02d seconds" % (time_hours, time_min, time_sec)))
+  return(time_hours, time_min, time_sec)
 
-  end_time2 = datetime.datetime.now()
-  total = end_time2 - start_time2
+def total_runtime_with_datetime(start_time_datetime):
+  end_time = datetime.datetime.now()
+  total = end_time - start_time_datetime
   logging.info("The total amount of time that the application ran is: {}".format(total))
+  return(total)
 
 main()
