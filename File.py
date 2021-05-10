@@ -67,3 +67,6 @@ class File:
     with open(absolute_path, "r") as handle:
         fasta = SeqIO.parse(handle, "fasta")
         return any(fasta)  # False when `fasta` is empty, i.e. wasn't a FASTA file
+
+class Logfile(File):
+  pass

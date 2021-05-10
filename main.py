@@ -1,4 +1,4 @@
-from get_file import File
+from File import File
 import os
 import logging
 import time
@@ -12,6 +12,7 @@ __version__ = '0.1 (Gerwin)'
 
 # The main
 def main():
+
 
   """----------------------------------------------
      Create a log file
@@ -57,6 +58,10 @@ def main():
   """
   name, extension = my_file.get_extension_of_absolute_path(my_file.path)
 
+  """----------------------------------------------
+     Get the total runtime of the programm.
+     ----------------------------------------------
+  """
   time_hours, time_min, time_sec = total_runtime_with_timer(start_time_timer)
   total = total_runtime_with_datetime(start_time_datetime)
   print(time_hours,time_min,time_sec)
