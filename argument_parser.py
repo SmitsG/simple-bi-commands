@@ -17,3 +17,7 @@ def parse_args():
                         default=None,
                         help="The input file(full path), could be in BAM, mBAM or fastq format.,"
                              "default = None")
+  # parse all arguments
+    args = parser.parse_args()
+
+    return args
