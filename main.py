@@ -12,8 +12,17 @@ __version__ = '0.1 (Gerwin)'
 
 # The main
 def main():
+
+  """----------------------------------------------
+     Create a log file
+     ----------------------------------------------
+  """
   create_log_file(logfile_name="hello.log")
-# Start time of the application.
+
+  """----------------------------------------------
+     Start time of the application.
+     ----------------------------------------------
+  """
   start_time_timer = timer()
   start_time_datetime = datetime.datetime.now()
 
@@ -59,7 +68,7 @@ def create_log_file(logfile_name):
   logging.info("A new log file called {} has been created".format(logfile_name))
 
 def total_runtime_with_timer(start_time_timer):
-# Log the total run time
+  # Log the total run time
   end_time = timer()
   seconds = end_time - start_time_timer
   time_min, time_sec = divmod(seconds, 60)
