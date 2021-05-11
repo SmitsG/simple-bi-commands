@@ -1,4 +1,5 @@
 from File import File
+import argument_parser
 import os
 import logging
 import time
@@ -13,12 +14,14 @@ __version__ = '0.1 (Gerwin)'
 # The main
 def main():
 
+  # Receive the input arguments from command line.
+  args = argument_parser.parse_args()
 
   """----------------------------------------------
      Create a log file
      ----------------------------------------------
   """
-  create_log_file(logfile_name="hello.log")
+  create_log_file(logfile_name="simple-bi-commands.log")
 
   """----------------------------------------------
      Start time of the application.
@@ -69,7 +72,9 @@ def main():
 def create_log_file(logfile_name):
   # level: this will allow to log into the command line, otherwise the command line will only print the log warnings.
   # filname: This will create a logged inforation file.
-  logging.basicConfig(filename=logfile_name, level=logging.INFO)
+  # Asctime adds a human readable time to the log file.\
+  # Filemode='w' so the log file doesn't append.
+  logging.basicConfig(filename=logfile_name, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
   logging.info("A new log file called {} has been created".format(logfile_name))
 
 def total_runtime_with_timer(start_time_timer):
@@ -89,3 +94,5 @@ def total_runtime_with_datetime(start_time_datetime):
   return(total)
 
 main()
+
+# WARNING: Found ~/.bashrc but no ~/.bash_profile, ~/.bash_login or ~/.profile.
