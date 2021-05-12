@@ -11,10 +11,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description=INFO,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    parser.add_argument("--logfile_name",
+    parser.add_argument("--logname",
                         type=str,
                         required=True,
-                        default=None,
+                        default="hello.log",
                         help="The name of the log file.")
   # parse all arguments
     args = parser.parse_args()
