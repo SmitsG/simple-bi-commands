@@ -21,7 +21,7 @@ def main():
      Create a log file
      ----------------------------------------------
   """
-  create_log_file(logfile_name="simple-bi-commands.log")
+  create_log_file(args.logname)
 
   """----------------------------------------------
      Start time of the application.
@@ -69,13 +69,14 @@ def main():
   total = total_runtime_with_datetime(start_time_datetime)
   print(time_hours,time_min,time_sec)
   
-def create_log_file(logfile_name):
+def create_log_file(logname):
+  print(logname)
   # level: this will allow to log into the command line, otherwise the command line will only print the log warnings.
   # filname: This will create a logged inforation file.
   # Asctime adds a human readable time to the log file.\
   # Filemode='w' so the log file doesn't append.
-  logging.basicConfig(filename=logfile_name, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
-  logging.info("A new log file called {} has been created".format(logfile_name))
+  logging.basicConfig(filename=logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
+  logging.info("A new log file called {} has been created".format(logname))
 
 def total_runtime_with_timer(start_time_timer):
   # Log the total run time
