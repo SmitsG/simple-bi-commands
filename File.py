@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import logging
 
 """ ---------------------------------------------- 
     Create Class with functions for file handling
@@ -16,19 +17,21 @@ class File:
        ------------------------------------------------
     """
     try:
-      print(absolute_path)
-      # Open the file for reading
+      logging.info("Checking if {} exists.".format(absolute_path))
+      logging.info("Opening the file for reading {}".format(absolute_path))
       fileHandler = open(absolute_path)
-      # Print the following message if no exception occurs
-      print("File exists")
-      # close the file
+      logging.info("File {} opened succesfully.".format(absolute_path))
+      # Log the following message if no exception occurs.
+      logging.info("File {} exists ...".format(absolute_path))
+      # close the file.
       fileHandler.close()
+      logging.info("Closed File {}  ...".format(absolute_path))
     except FileNotFoundError:
       # Print the following message if any error occurs
       print("File is not exist or accessible")
     finally:
       # print the termination message
-      print("End of file_exist program")
+      logging.info("Opening the file for reading {}".format(absolute_path))
 
   """ ---------------------------------------------- 
       Getters and Setters
@@ -39,18 +42,20 @@ class File:
   @property
   def path(self):
     # return the path of your File object
+    logging.info("Returning {}...".format(self.__path))
     return self.__path
 
   @path.setter
   def path(self, path):
     # set the path of your File object
     self.__path = path
+    logging.info("Set the path of File object to {}...".format(self.__path))
 
   @path.deleter
   def path(self):
     # delete the path of your File object
-    print("deleter of x called")
     del self.__path
+    logging.info("Deleted the path of File object {}...".format(self.__path))
 
   def get_basename_of_absolute_path(self, absolute_path):
     # Determine and return the basename, extracted from the path.
