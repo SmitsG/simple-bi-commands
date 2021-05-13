@@ -16,17 +16,21 @@ def main():
 
   # Receive the input arguments from command line.
   args = argument_parser.parse_args()
+  print(args.logname)
+  print(args.inputfile)
+  logging.basicConfig(filename=args.logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
 
+  """----------------------------------------------
+     Start time of the application.
+     ----------------------------------------------
+  """
+ 
   """----------------------------------------------
      Create a log file
      ----------------------------------------------
   """
   create_log_file(args.logname)
 
-  """----------------------------------------------
-     Start time of the application.
-     ----------------------------------------------
-  """
   start_time_timer = timer()
   start_time_datetime = datetime.datetime.now()
 
@@ -34,14 +38,13 @@ def main():
       Step 1. give your absolute path
       ----------------------------------------------
   """ 
-  absolute_path = "C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna" # Obviously not FASTA
 
   """ ----------------------------------------------
       Step 2. create an object my_file of the File Class in get_file.py.
       You will give your absolute_path, which can be changed later.
       -----------------------------------------------
   """ 
-  my_file = File(absolute_path)
+  my_file = File(args.inputfile)
 
   """ -----------------------------------------------
     Step 3. Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
@@ -67,16 +70,15 @@ def main():
   """
   time_hours, time_min, time_sec = total_runtime_with_timer(start_time_timer)
   total = total_runtime_with_datetime(start_time_datetime)
-  print(time_hours,time_min,time_sec)
   
 def create_log_file(logname):
-  print(logname)
   # level: this will allow to log into the command line, otherwise the command line will only print the log warnings.
   # filname: This will create a logged inforation file.
   # Asctime adds a human readable time to the log file.\
   # Filemode='w' so the log file doesn't append.
+  logging.info("Starting function to create a logfile. ")
   logging.basicConfig(filename=logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
-  logging.info("A new log file called {} has been created".format(logname))
+  logging.info("A new log file called {} has been created".format(logname)) # you have to double check this.
 
 def total_runtime_with_timer(start_time_timer):
   # Log the total run time
