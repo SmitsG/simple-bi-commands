@@ -14,9 +14,16 @@ def parse_args():
     parser.add_argument("--logname",
                         type=str,
                         required=True,
-                        default="hello.log",
+                        default=None,
                         help="The name of the log file.")
-  # parse all arguments
-    args = parser.parse_args()
+  
 
+    parser.add_argument("--inputfile",
+                        type=str,
+                        required=True,
+                        default="C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna",
+                        help="The input file")
+
+    # parse all arguments
+    args = parser.parse_args()
     return args
