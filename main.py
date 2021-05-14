@@ -16,9 +16,6 @@ def main():
 
   # Receive the input arguments from command line.
   args = argument_parser.parse_args()
-  print(args.logname)
-  print(args.inputfile)
-  logging.basicConfig(filename=args.logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
 
   """----------------------------------------------
      Start time of the application.
@@ -30,9 +27,13 @@ def main():
      ----------------------------------------------
   """
   create_log_file(args.logname)
+  logging.info("logname: {}".format(args.logname))
+  logging.info("inputfile: {}".format(args.inputfile))
 
+  logging.info("Set starttime") # you have to double check this.
   start_time_timer = timer()
   start_time_datetime = datetime.datetime.now()
+  
 
   """ ---------------------------------------------- 
       Step 1. give your absolute path
@@ -45,6 +46,11 @@ def main():
       -----------------------------------------------
   """ 
   my_file = File(args.inputfile)
+  try:
+    my_file
+    logging.info("Created an object {} of file class".format(my_file))
+  except NameError:
+    print("a NameError occured")
 
   """ -----------------------------------------------
     Step 3. Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
@@ -76,7 +82,6 @@ def create_log_file(logname):
   # filname: This will create a logged inforation file.
   # Asctime adds a human readable time to the log file.\
   # Filemode='w' so the log file doesn't append.
-  logging.info("Starting function to create a logfile. ")
   logging.basicConfig(filename=logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
   logging.info("A new log file called {} has been created".format(logname)) # you have to double check this.
 
@@ -99,3 +104,4 @@ def total_runtime_with_datetime(start_time_datetime):
 main()
 
 # WARNING: Found ~/.bashrc but no ~/.bash_profile, ~/.bash_login or ~/.profile.
+# python main.py --logname hello.log --inputfile C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna
