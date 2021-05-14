@@ -5,6 +5,7 @@ import logging
 import time
 from timeit import default_timer as timer
 import datetime
+import sys
 ##############################################################
 # Simple bio-informatics tools
 # Author: Gerwin Smits
@@ -18,11 +19,6 @@ def main():
   args = argument_parser.parse_args()
 
   """----------------------------------------------
-     Start time of the application.
-     ----------------------------------------------
-  """
- 
-  """----------------------------------------------
      Create a log file
      ----------------------------------------------
   """
@@ -30,30 +26,31 @@ def main():
   logging.info("logname: {}".format(args.logname))
   logging.info("inputfile: {}".format(args.inputfile))
 
+  """----------------------------------------------
+     Start time of the application.
+     ----------------------------------------------
+  """
   logging.info("Set starttime") # you have to double check this.
   start_time_timer = timer()
   start_time_datetime = datetime.datetime.now()
-  
-
-  """ ---------------------------------------------- 
-      Step 1. give your absolute path
-      ----------------------------------------------
-  """ 
 
   """ ----------------------------------------------
-      Step 2. create an object my_file of the File Class in get_file.py.
+      Create an object my_file of the File Class in get_file.py.
       You will give your absolute_path, which can be changed later.
+      Check if the object exist
       -----------------------------------------------
   """ 
-  my_file = File(args.inputfile)
   try:
+    my_file = File(args.inputfile)
     my_file
     logging.info("Created an object {} of file class".format(my_file))
   except NameError:
-    print("a NameError occured")
+    logging.info("A NameError occured")
+    logging.info("Closing programm")
+    sys.exit(1)
 
   """ -----------------------------------------------
-    Step 3. Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
+    Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
       ------------------------------------------------
   """
   my_file.file_exist(my_file.path)

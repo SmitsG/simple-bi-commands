@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import logging
+import sys
 
 """ ---------------------------------------------- 
     Create Class with functions for file handling
@@ -29,6 +30,8 @@ class File:
     except FileNotFoundError:
       # Print the following message if any error occurs
       print("File is not exist or accessible")
+      logging.info("File not exist or accesible, Closing program")
+      sys.exit(1)
     finally:
       # print the termination message
       logging.info("Opening the file for reading {}".format(absolute_path))
