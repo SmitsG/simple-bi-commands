@@ -23,7 +23,6 @@ def main():
      ----------------------------------------------
   """
   create_log_file(args.logname)
-  logging.info("logname: {}".format(args.logname))
   logging.info("inputfile: {}".format(args.inputfile))
 
   """----------------------------------------------
@@ -37,12 +36,11 @@ def main():
   """ ----------------------------------------------
       Create an object my_file of the File Class in get_file.py.
       You will give your absolute_path, which can be changed later.
-      Check if the object exist
+      Check if the object exist. If the object doesn't exist, give an error and close the program.
       -----------------------------------------------
   """ 
   try:
     my_file = File(args.inputfile)
-    my_file
     logging.info("Created an object {} of file class".format(my_file))
   except NameError:
     logging.info("A NameError occured")
@@ -56,16 +54,26 @@ def main():
   my_file.file_exist(my_file.path)
 
   """ -----------------------------------------------
-    Step 4. Get the basename of the absolute path
+    Get the basename of the absolute path
     -----------------------------------------------
   """
   basename = my_file.get_basename_of_absolute_path(my_file.path)
 
   """ -----------------------------------------------
-    Step 5. Get the file extension of the absolute path
+    Get the file extension of the absolute path
     -----------------------------------------------
   """
   name, extension = my_file.get_extension_of_absolute_path(my_file.path)
+
+  """ -----------------------------------------------
+      Check the format of the file
+      -----------------------------------------------
+  """
+  any = my_file.is_fasta(my_file.path)
+  logging.info("Fasta format?: {}".format(any))
+
+  my_file.print_record_id(my_file.path)
+
 
   """----------------------------------------------
      Get the total runtime of the programm.

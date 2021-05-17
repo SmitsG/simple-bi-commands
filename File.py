@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import logging
 import sys
+from Bio import SeqIO
 
 """ ---------------------------------------------- 
     Create Class with functions for file handling
@@ -70,11 +71,16 @@ class File:
     name, extension = os.path.splitext(absolute_path)
     return(name, extension)
 
-  def is_fasta(absolute_path):
+  def is_fasta(self, absolute_path):
     # check the type of format
+    logging.info("Checking if input path {} is fasta file.".format(absolute_path))
     with open(absolute_path, "r") as handle:
         fasta = SeqIO.parse(handle, "fasta")
         return any(fasta)  # False when `fasta` is empty, i.e. wasn't a FASTA file
+  
+  def print_record_id(self, absolute_path):
+    for record in SeqIO.parse(absolute_path, "fasta"):
+      print(record.id)
 
 class Logfile(File):
   pass
