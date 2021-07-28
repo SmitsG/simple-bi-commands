@@ -35,7 +35,7 @@ class File:
       sys.exit(1)
     finally:
       # print the termination message
-      logging.info("Opening the file for reading {}".format(absolute_path))
+      logging.info("Done with file-exist check {}".format(absolute_path))
 
   """ ---------------------------------------------- 
       Getters and Setters
@@ -63,12 +63,16 @@ class File:
 
   def get_basename_of_absolute_path(self, absolute_path):
     # Determine and return the basename, extracted from the path.
+    logging.info("Get the basename of the absolute file path: {}".format(absolute_path))
     basename = os.path.basename(absolute_path)
+    logging.info("{} is the basename of the {}.".format(basename, absolute_path))
     return(basename)
 
   def get_extension_of_absolute_path(self, absolute_path):
     # Determine and return the type of format (examples: .csv .fasta .fastq)
+    logging.info("Get the file extension of the absolute file path: {}".format(absolute_path))
     name, extension = os.path.splitext(absolute_path)
+    logging.info("{} is the file extension of {}".format(extension, absolute_path))
     return(name, extension)
 
   def is_fasta(self, absolute_path):
@@ -79,8 +83,13 @@ class File:
         return any(fasta)  # False when `fasta` is empty, i.e. wasn't a FASTA file
   
   def print_record_id(self, absolute_path):
+    #Print the record id's
+    logging.info("Start record id")
     for record in SeqIO.parse(absolute_path, "fasta"):
       print(record.id)
+    logging.info("Finished record id")
+
+
 
 class Logfile(File):
   pass

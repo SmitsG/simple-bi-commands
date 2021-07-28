@@ -20,7 +20,7 @@ def parse_args():
 
     parser.add_argument("--inputfile",
                         type=str,
-                        required=True,
+                        required=None,
                         default="C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna",
                         help="The input file")
 

@@ -48,20 +48,20 @@ def main():
     sys.exit(1)
 
   """ -----------------------------------------------
-    Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
+      Check if the file on the absolute file path exist, otherwise you can quit the program immidately.
       ------------------------------------------------
   """
   my_file.file_exist(my_file.path)
 
   """ -----------------------------------------------
-    Get the basename of the absolute path
-    -----------------------------------------------
+      Get the basename of the absolute path
+      -----------------------------------------------
   """
   basename = my_file.get_basename_of_absolute_path(my_file.path)
 
   """ -----------------------------------------------
-    Get the file extension of the absolute path
-    -----------------------------------------------
+      Get the file extension of the absolute path
+      -----------------------------------------------
   """
   name, extension = my_file.get_extension_of_absolute_path(my_file.path)
 
@@ -72,8 +72,11 @@ def main():
   any = my_file.is_fasta(my_file.path)
   logging.info("Fasta format?: {}".format(any))
 
+  """ -----------------------------------------------
+      Print the record id's
+      -----------------------------------------------
+  """
   my_file.print_record_id(my_file.path)
-
 
   """----------------------------------------------
      Get the total runtime of the programm.
@@ -106,7 +109,10 @@ def total_runtime_with_datetime(start_time_datetime):
   logging.info("The total amount of time that the application ran is: {}".format(total))
   return(total)
 
+
+
 main()
 
 # WARNING: Found ~/.bashrc but no ~/.bash_profile, ~/.bash_login or ~/.profile.
 # python main.py --logname hello.log --inputfile C:/Users/gerwi/OneDrive/Documents/GitHub/simple-bi-commands/GCF_001272835.1_ASM127283v1_genomic.fna
+# conda install -n base -c conda-forge mamba
