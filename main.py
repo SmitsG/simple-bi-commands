@@ -22,8 +22,8 @@ def main():
      Create a log file
      ----------------------------------------------
   """
-  create_log_file(args.logname)
-  logging.info("inputfile: {}".format(args.inputfile))
+  logger = create_log_file(args.logname)
+  logger.info("inputfile: {}".format(args.inputfile))
 
   """----------------------------------------------
      Start time of the application.
@@ -90,8 +90,23 @@ def create_log_file(logname):
   # filname: This will create a logged inforation file.
   # Asctime adds a human readable time to the log file.\
   # Filemode='w' so the log file doesn't append.
-  logging.basicConfig(filename=logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
+  logger = logging.getLogger(__name__)
+  
+  logger.setLevel(logging.INFO)
+
+  formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+
+  file_handler = logging.FileHandler(logname)
+
+  file_handler.setFormatter(formatter)
+
+  logger.addHandler(file_handler)
+
+  # logging.basicConfig(filename=logname, level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s', filemode='w')
+
   logging.info("A new log file called {} has been created".format(logname)) # you have to double check this.
+
+  return (logger)
 
 def total_runtime_with_timer(start_time_timer):
   # Log the total run time
@@ -108,8 +123,6 @@ def total_runtime_with_datetime(start_time_datetime):
   total = end_time - start_time_datetime
   logging.info("The total amount of time that the application ran is: {}".format(total))
   return(total)
-
-
 
 main()
 
